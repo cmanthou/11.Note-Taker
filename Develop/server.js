@@ -9,7 +9,7 @@ var path = require("path");
 const { notDeepEqual } = require("assert");
 
 // Initial Port
-const PORT = process.env.PORT || 4100;
+var PORT = process.env.PORT || 4100;
 
 // Express
 app.use(express.urlencoded({ extended: true }));
@@ -23,6 +23,7 @@ app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 app.get("/api/notes", function (req, res) {
+    console.log("/api/notes-get");
     res.json(db);
 });
 app.get("*", function (req, res) {
@@ -56,7 +57,7 @@ app.listen(PORT, function () {
     console.log("App listening on PORT: " + PORT);
 });
 function writeToDB(array) {
-    fs.writeFileSync("./db/db.json", JSON.stringify(arrauy));
+    fs.writeFileSync("./db/db.json", JSON.stringify(array));
 }
 
 
